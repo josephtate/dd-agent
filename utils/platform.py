@@ -6,6 +6,8 @@
 import os
 import sys
 
+from orchestrator import MesosUtil
+
 
 def get_os():
     "Human-friendly OS name"
@@ -21,6 +23,7 @@ def get_os():
         return 'solaris'
     else:
         return sys.platform
+
 
 class Platform(object):
     """
@@ -108,3 +111,7 @@ class Platform(object):
     @staticmethod
     def is_nomad():
         return 'NOMAD_ALLOC_ID' in os.environ
+
+    @staticmethod
+    def is_mesos():
+        return MesosUtil.is_detected()
